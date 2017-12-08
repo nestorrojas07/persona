@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Creacion de persona</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="container">
+        <h1 class="center"><span>formulario de creación de persona</span></h1>
+        <form action="person" method="post" >
+            <div>
+                <label for="nombre" >nombre</label>
+                <input type="text" name="nombre" id="nombre">
+            </div>
+            <div>
+                <label for="apellidos">apellidos</label>
+                <input type="text" name="apellidos" id="apellidos">
+            </div>
+            <div>
+                <label for="procesado">procesado</label>
+                <input type="checkbox" name="procesado" id="procesado" disabled>
+            </div>
+            <div>
+            <input type="submit" value="crear">
+        </form>
+    </div>
+</body>
+</html>

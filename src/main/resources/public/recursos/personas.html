@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Using jqGrid from Content Delivery Networks</title>
+
+
+<script src ="http://code.jquery.com/jquery-latest.min.js"                                     type="text/javascript"></script>
+
+<!--  See http://de.cdnjs.com/libraries/jqgrid -->
+<link   href="http://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/css/ui.jqgrid.css"            type="text/css"       rel="stylesheet"  media="screen"  />
+<script src ="http://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/i18n/grid.locale-en.js"    type="text/javascript"></script>
+<script src ="http://cdnjs.cloudflare.com/ajax/libs/jqgrid/4.6.0/js/jquery.jqGrid.min.js"      type="text/javascript"></script>
+
+<!-- Choose a theme from http://the-xavi.com/articles/jquery-ui-css-themes-hosted-on-cdn -->
+<link   href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/themes/sunny/jquery-ui.css" type="text/css"       rel="stylesheet" media="screen" />
+
+<script type="text/javascript">
+$(function () {
+    $("#grid").jqGrid({
+        caption    : "Grid Personas ",
+        url:'/api/persons',
+        datatype   : "json",
+        height     :  400,
+        
+        rowList:[10,20,30],
+        colNames: ["Nombres", "apellidos", "procesado"],
+        colModel: [
+            { name: "nombre" , width: 55                    },
+            { name: "apellido" , width: 90, align   : "right" },
+            { name: "procesado" , width: 80, sortable:  false  }
+        ],
+        viewrecords: true,
+        pager: "#pager"
+    });
+      /**var data = [
+        {nombre:"1", apellido: 20, procesado: "bla"        },
+        {nombre:"2", apellido: 30, procesado: "more bla"   },
+        {nombre:"3", apellido: 40, procesado: "then what"  },
+        {nombre:"4", apellido: 50, procesado: "what now"   },
+        {nombre:"5", apellido: 60, procesado: "bla bla bla"},
+        {nombre:"6", apellido: 70, procesado: "the end"    }
+      ];
+     for(var i=0; i<=data.length; i++) {
+        jQuery("#grid").jqGrid('addRowData', i+1, data[i]);
+     }*/
+    jQuery("#grid").jqGrid('setGridWidth', parseInt($(window).width()) - 20);
+});
+
+</script>
+</head>
+<body>
+    <table id="grid" summary=".."></table>
+    <div id="pager"></div>
+</body>
+</html>

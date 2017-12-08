@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo</title>
+        <meta charset="utf-8">
+        <!-- Styles -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link href="css/jquery.bootgrid.css" rel="stylesheet">
+    </head>
+    <body>
+        <table id="grid" data-toggle="bootgrid" data-ajax="true" data-url="/api/persons" class="table table-condensed table-hover table-striped">
+            <thead>
+                <tr>
+                    <th data-column-id="id">ID</th>
+                    <th data-column-id="nombre">nombres</th>
+                    <th data-column-id="apellido">apellidos</th>
+                </tr>
+            </thead>
+        </table>
+        <!-- Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+         <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <script src="js/jquery.bootgrid.js"></script>
+        <script src="js/tablepersonas.js"></script>
+    </body>
+</html>

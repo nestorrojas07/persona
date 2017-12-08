@@ -9,6 +9,8 @@ import javax.persistence.StoredProcedureQuery;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,9 +36,9 @@ public class PersonController {
 	
 	
 	@RequestMapping(value= "/persons", method= RequestMethod.GET)
-	public  List<Persona> getAll()
+	public  Page<Persona> getAll(Pageable pages)
 	{
-		return ps.findAll();
+		return ps.findAll(pages);
 	}
 	
 	

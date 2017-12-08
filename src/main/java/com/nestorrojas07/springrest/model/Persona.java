@@ -23,6 +23,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
 @NamedStoredProcedureQuery(
 		name="GUARDARPERSONA",
 		procedureName="GUARDARPERSONA",
@@ -55,6 +56,7 @@ public class Persona {
 	@NotBlank
 	private String apellido;
 	
+	@Column(columnDefinition = "TINYINT")
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean procesado;
 	
