@@ -42,6 +42,14 @@ public class PersonController {
 	}
 	
 	
+
+	@RequestMapping(value= "/persons/processed", method= RequestMethod.GET)
+	public  Page<Persona> getAllProcessed(Pageable pages)
+	{
+		return ps.findByProcesado(true, pages);
+	}
+	
+	
 	@RequestMapping(value = "persons/{id}")
 	public ResponseEntity<Persona> getPerson(@PathVariable("id") long id)
 	{

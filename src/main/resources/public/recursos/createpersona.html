@@ -10,22 +10,65 @@
 <body>
     <div id="container">
         <h1 class="center"><span>formulario de creación de persona</span></h1>
-        <form action="person" method="post" >
+        <form id="formpersona" action="" method="post" >
             <div>
                 <label for="nombre" >nombre</label>
-                <input type="text" name="nombre" id="nombre">
+                <input type="text" id="nombre" name="nombre" id="nombre">
             </div>
             <div>
                 <label for="apellidos">apellidos</label>
-                <input type="text" name="apellidos" id="apellidos">
+                <input type="text"  id="apellidos" name="apellidos" id="apellidos">
             </div>
             <div>
                 <label for="procesado">procesado</label>
-                <input type="checkbox" name="procesado" id="procesado" disabled>
+                <input type="checkbox" id="procesado" name="procesado" id="procesado" disabled>
             </div>
             <div>
-            <input type="submit" value="crear">
+            <input type="button" id="submit" value="crear">
         </form>
     </div>
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+    	console.log("Se cargo jquery");
+        // click on button submit
+        $("#submit").on('click', function(){
+            // send ajax
+            $.ajax({
+                url: '../api/persons', // url where to submit the request
+                type : "POST", // type of action POST || GET
+                dataType : 'json', // data type
+                data : JSON.stringify({
+		                	nombre:$('#nombre').val(),
+		                	apellido:$('#apellidos').val(),
+		                	procesado:$('#procesado').attr('checked'),
+		                }), 
+                contentType: 'application/json',
+                success : function(result) {
+                	$('#formpersona')[0].reset();
+                	alert("se creo con exito " );
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log(result);
+                    
+                },
+                error: function(xhr, resp, text) {
+                    console.log(xhr, resp, text);
+                },
+                
+                serializeform: function( $form ){
+                    var unindexed_array = $form.serializeArray();
+                    var indexed_array = {};
+                    $.map(unindexed_array, function(n, i){
+                        indexed_array[n['name']] = n['value'];
+                    });
+                    return indexed_array;
+                },
+            })
+        });
+    });
+
+</script>
 </body>
 </html>

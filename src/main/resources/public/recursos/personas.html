@@ -20,38 +20,43 @@
 $(function () {
     $("#grid").jqGrid({
         caption    : "Grid Personas ",
-        url:'/api/persons',
+        url:'/api/persons/processed',
         datatype   : "json",
+        jsonReader: { repeatitems:false, root:"content",page:"number + 1", total: "totalPages"},
+        ajaxGridOptions: { contentType: "application/json", cache: true },
         height     :  400,
+        refresh: true,
         
         rowList:[10,20,30],
         colNames: ["Nombres", "apellidos", "procesado"],
         colModel: [
-            { name: "nombre" , width: 55                    },
-            { name: "apellido" , width: 90, align   : "right" },
-            { name: "procesado" , width: 80, sortable:  false  }
-        ],
+            { name: "nombre"    ,jsonmap:"nombre",     width: 55 , align   : "center"},
+            { name: "apellido"  ,jsonmap:"apellido",   width: 90, align   : "center" },
+            { name: "procesado" ,jsonmap:"procesado",  width: 80, sortable:  false,formatter: 'checkbox', align   : "center" }
+        ],        
         viewrecords: true,
-        pager: "#pager"
+        pager: "#pager",
+        
+        loadComplete: function (data) {
+                 console.log(data);
+        },
+        loadBeforeSend: function(jqXHR) {
+            jqXHR.setRequestHeader('X-ZUMO-APPLICATION', 'myKey');
+        },
     });
-      /**var data = [
-        {nombre:"1", apellido: 20, procesado: "bla"        },
-        {nombre:"2", apellido: 30, procesado: "more bla"   },
-        {nombre:"3", apellido: 40, procesado: "then what"  },
-        {nombre:"4", apellido: 50, procesado: "what now"   },
-        {nombre:"5", apellido: 60, procesado: "bla bla bla"},
-        {nombre:"6", apellido: 70, procesado: "the end"    }
-      ];
-     for(var i=0; i<=data.length; i++) {
-        jQuery("#grid").jqGrid('addRowData', i+1, data[i]);
-     }*/
     jQuery("#grid").jqGrid('setGridWidth', parseInt($(window).width()) - 20);
+    $("#grid").jqGrid("navGrid", "#pager", {
+        add: false, edit: false, del: false, search: false, refresh: true
+    });
 });
 
 </script>
 </head>
 <body>
     <table id="grid" summary=".."></table>
-    <div id="pager"></div>
+    <div style="float: left;">
+              <table id="projectTable"></table>
+              <div id="pager"></div>
+    </div>
 </body>
 </html>

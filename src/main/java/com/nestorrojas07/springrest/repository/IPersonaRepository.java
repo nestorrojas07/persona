@@ -1,8 +1,8 @@
 package com.nestorrojas07.springrest.repository;
 
-import java.awt.print.Pageable;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -26,4 +26,11 @@ public interface IPersonaRepository extends JpaRepository<Persona, Long>{
 	 @Query("UPDATE Persona p SET p.procesado = :isProcesado where p.procesado = false")
 	 @Transactional
 	 void marcarProcesado(@Param("isProcesado") Boolean isProcesado);
+	 /*
+	 @Query("SELECT Persona  where procesado = :isProcesado")
+	 Page<Persona> findByProcesado( @Param("isProcesado")  Boolean isProcesado, Pageable pages);
+	 */
+
+
+	Page<Persona> findByProcesado(boolean b, Pageable pages);
 }
